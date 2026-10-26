@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <NavLink to="/">תפריט</NavLink>
-
+      <NavLink to="/about">אודות</NavLink>
       {user && !isAdmin && (
         <>
           <NavLink to="/order">הזמנה חדשה</NavLink>

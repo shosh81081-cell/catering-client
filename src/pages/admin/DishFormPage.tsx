@@ -129,7 +129,7 @@ export default function DishFormPage() {
               placeholder='יחידה (ק"ג, ליטר...)'
               {...register(`ingredients.${index}.unit`, { required: true })}
             />
-            <button type="button" onClick={() => remove(index)}>הסר</button>
+            <button type="button" className="btn-remove" onClick={() => remove(index)}>הסר</button>
           </div>
         ))}
         {errors.ingredients && <span className="error">יש למלא את כל פרטי המצרכים</span>}

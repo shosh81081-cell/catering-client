@@ -119,7 +119,7 @@ export default function AdminOrderDetailsPage() {
         {order.extraItems.map((item) => (
           <li key={item._id}>
             {item.name}: {item.amount} {item.unit}{" "}
-            <button className="no-print" onClick={() => removeExtraItem(item._id)}>הסר</button>
+            <button className="no-print btn-remove" onClick={() => removeExtraItem(item._id)}>הסר</button>
           </li>
         ))}
       </ul>

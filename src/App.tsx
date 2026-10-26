@@ -12,12 +12,14 @@ import AdminOrderDetailsPage from "./pages/admin/AdminOrderDetailsPage";
 import AdminDishesPage from "./pages/admin/AdminDishesPage";
 import DishFormPage from "./pages/admin/DishFormPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AboutPage from "./pages/AboutPage";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         {/* פתוח לכולם */}
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/" element={<MenuPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

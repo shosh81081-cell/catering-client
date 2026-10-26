@@ -53,6 +53,7 @@ export default function AdminDishesPage() {
               <td>
                 <Link to={`/admin/dishes/${dish._id}`}>עריכה</Link>{" "}
                 <button
+                  className="btn-remove"
                   onClick={() =>
                     confirm(`למחוק את "${dish.name}"?`) && deleteMutation.mutate(dish._id)
                   }

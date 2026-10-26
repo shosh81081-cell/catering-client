@@ -22,7 +22,7 @@ export default function NewOrderPage() {
   const { register, handleSubmit, formState: { errors } } = useForm<OrderForm>();
   const navigate = useNavigate();
 
-  
+
   const { data: options } = useQuery({
     queryKey: ["orderOptions"],
     queryFn: getOrderOptions
@@ -82,7 +82,7 @@ export default function NewOrderPage() {
               </td>
               <td>{dish.price * quantity} ₪</td>
               <td>
-                <button type="button" onClick={() => removeItem(dish._id)}>הסר</button>
+                <button type="button" className="btn-remove" onClick={() => removeItem(dish._id)}>הסר</button>
               </td>
             </tr>
           ))}

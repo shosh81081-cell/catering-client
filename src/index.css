@@ -1,4 +1,46 @@
-/* עיצוב בסיסי - אפשר לשנות לגמרי */
+/* =========================================================
+   אירוע בטעם - עיצוב כהה ומודרני
+   ========================================================= */
+
+/* גופנים: Rubik לטקסט, Secular One ללוגו ולכותרות */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&family=Secular+One&family=Karantina:wght@400;700&display=swap");
+
+/* ---------- צבעים ומשתנים: לשינוי העיצוב משנים כאן ---------- */
+:root {
+  color-scheme: dark;
+  /* לוח שנה, גלילה ופקדים מובנים בגרסה כהה */
+
+  --bg: #0b0d0c;
+  /* רקע הדף - שחור כהה */
+  --surface: #151917;
+  /* כרטיסים, טפסים, טבלאות */
+  --surface-2: #1d2220;
+  /* שדות קלט ושורות */
+  --border: #2a302d;
+
+  --text: #f3f0e8;
+  --muted: #a3a097;
+
+  --green: #1f6b52;
+  /* ירוק בקבוק */
+  --green-dark: #123f31;
+  --red: #c0392b;
+  /* אדום */
+  --red-soft: rgba(192, 57, 43, 0.12);
+  --gold: #d4af5a;
+  /* הדגשה */
+  --gold-soft: rgba(212, 175, 90, 0.15);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.55);
+
+  --font: "Rubik", "Segoe UI", Arial, sans-serif;
+  --font-display: "Secular One", "Rubik", sans-serif;
+}
+
+/* ---------- בסיס ---------- */
 * {
   box-sizing: border-box;
 }
@@ -6,136 +48,920 @@
 body {
   margin: 0;
   direction: rtl;
-  font-family: Arial, sans-serif;
-  background: #f7f5f2;
-  color: #222;
+  font-family: var(--font);
+  font-weight: 400;
+  background:
+    radial-gradient(ellipse at top, rgba(31, 107, 82, 0.18), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: normal;
+  color: var(--text);
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 32px;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 40px 20px 64px;
 }
 
+/* ---------- Header ---------- */
+/* ---------- Header ---------- */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  padding: 12px 24px;
-  background: #2f4f3a;
-  color: white;
+  gap: 12px;
+  min-height: 110px;
+  padding: 0 48px;
+  background: rgba(8, 10, 9, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* הלוגו "אירוע בטעם" */
+.navbar::before {
+  content: "אירוע בטעם";
+  font-family: var(--font-display);
+  font-size: 3rem;
+  margin-left: 40px;
+  background: linear-gradient(135deg, #f1d68e, var(--gold) 45%, #a8822f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.5px;
 }
 
 .navbar a {
-  color: white;
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar a:hover {
+  background: var(--surface-2);
   text-decoration: none;
 }
 
 .navbar a.active {
-  font-weight: bold;
-  text-decoration: underline;
+  background: var(--gold);
+  color: #1a1406;
 }
 
 .navbar .spacer {
   flex: 1;
 }
 
+.navbar span {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-left: 12px;
+}
+
+.navbar button {
+  background: transparent;
+  color: var(--text);
+  font-size: 1.05rem;
+  padding: 10px 24px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.navbar button:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: transparent;
+}
+
+/* ---------- כפתורים ---------- */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--green);
+  color: #fff;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover {
+  background: #26805f;
+  box-shadow: 0 6px 18px rgba(31, 107, 82, 0.35);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  background: #3a403d;
+  color: var(--muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* כפתור "הוסף להזמנה" - סימן + */
+.card-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-footer button::before {
+  content: "+";
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* כפתור הסרה/מחיקה - סמל פח (className="btn-remove") */
+.btn-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--red-soft);
+  color: #ff8a7d;
+  border: 1px solid rgba(192, 57, 43, 0.4);
+  padding: 7px 14px;
+}
+
+.btn-remove:hover {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(192, 57, 43, 0.35);
+}
+
+.btn-remove::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18'/%3E%3Cpath d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18'/%3E%3Cpath d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---------- כותרת עמוד התפריט ---------- */
+div:has(> .grid)>h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin: 8px 0 32px;
+}
+
+/* קו זהב דק מתחת לכותרת */
+div:has(> .grid)>h1::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin: 14px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ---------- חיפוש וסינון ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+div:has(> .grid)>.filters {
+  justify-content: center;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  max-width: 760px;
+  margin: 0 auto 36px;
+}
+
+div:has(> .grid)>.filters input,
+div:has(> .grid)>.filters select {
+  border-radius: 999px;
+}
+
+.filters input {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ---------- כרטיסי מנות ---------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 .card {
-  background: white;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(212, 175, 90, 0.45);
+}
+
+/* תמונת המנה */
 .card img {
-  width: 100%;
-  height: 160px;
+  width: calc(100% + 36px);
+  height: 190px;
+  margin: -18px -18px 16px;
   object-fit: cover;
-  border-radius: 6px;
+  transition: transform 0.4s;
+}
+
+.card:hover img {
+  transform: scale(1.04);
+}
+
+/* מנה בלי תמונה: תמונת ברירת מחדל, או רקע ירוק אם אין קובץ */
+.card:not(:has(img))::before {
+  content: "";
+  display: block;
+  height: 190px;
+  margin: -18px -18px 16px;
+  background:
+    url("/images/default-dish.jpg") center / cover,
+    linear-gradient(135deg, var(--green), var(--green-dark));
+}
+
+.card h3 {
+  margin: 0 0 6px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 16px;
+  flex: 1;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
 }
 
-button {
-  cursor: pointer;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  background: #c8833a;
-  color: white;
+.card-footer strong {
+  color: var(--gold);
+  font-size: 1.35rem;
+  font-weight: 600;
 }
 
-.loader {
-  padding: 24px;
-  text-align: center;
-}
-
-.error {
-  padding: 12px;
-  background: #fde8e8;
-  color: #a12222;
-  border-radius: 6px;
-}
-
-@media print {
-
-  .navbar,
-  button {
-    display: none;
-  }
-}
-
+/* ---------- טפסים ---------- */
 form {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-width: 400px;
+  max-width: 600px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  color: var(--text);
+}
+
+label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
 }
 
 input,
 select,
 textarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  padding: 11px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.filters {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+input::placeholder,
+textarea::placeholder {
+  color: #6f6c64;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+form button[type="submit"] {
+  margin-top: 18px;
+  padding: 13px;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--green), #2a8a69);
+}
+
+/* ---------- כניסה והרשמה: תמונת אוכל ברקע ---------- */
+body:has(main > form) {
+  background:
+    linear-gradient(rgba(5, 7, 6, 0.72), rgba(5, 7, 6, 0.85)),
+    url("/images/auth-bg.jpg") center / cover fixed,
+    var(--bg);
+}
+
+main>form {
+  max-width: 440px;
+  margin: 48px auto;
+  padding: 36px;
+  background: rgba(21, 25, 23, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 90, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+main>form h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+main>form p {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* ---------- הודעות ---------- */
+div.error {
+  padding: 12px 16px;
+  background: var(--red-soft);
+  color: #ff9a8e;
+  border: 1px solid rgba(192, 57, 43, 0.35);
+  border-radius: var(--radius-sm);
+  margin: 10px 0;
+}
+
+span.error {
+  color: #ff8a7d;
+  font-size: 0.85rem;
+}
+
+.loader {
+  padding: 64px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+/* ---------- טבלאות ---------- */
 table {
   width: 100%;
-  border-collapse: collapse;
-  background: white;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
 }
 
-th,
-td {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+th {
+  background: #8b1e1e;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 14px;
   text-align: right;
 }
 
-td input {
-  width: 70px;
+td {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+  text-align: right;
+  vertical-align: middle;
 }
 
+tbody tr {
+  transition: background 0.15s;
+}
+
+tbody tr:hover {
+  background: var(--surface-2);
+}
+
+td input {
+  width: 84px;
+}
+
+td select {
+  padding: 7px 10px;
+}
+
+/* ---------- רשימות (פריטים נוספים) ---------- */
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+/* ---------- גלילה ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3c443f;
+}
+
+/* ---------- טלפון ומסכים קטנים ---------- */
+@media (max-width: 760px) {
+  .navbar {
+    padding: 12px 16px;
+    min-height: auto;
+    justify-content: center;
+  }
+
+  .navbar::before {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 6px;
+    font-size: 1.8rem;
+  }
+
+  .navbar .spacer {
+    display: none;
+  }
+
+  .container {
+    padding: 24px 14px 48px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  div:has(> .grid)>h1 {
+    font-size: 2rem;
+  }
+
+  div:has(> .grid)>.filters {
+    border-radius: var(--radius);
+  }
+
+  form,
+  main>form {
+    padding: 20px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- הדפסה: בהיר ונקי ---------- */
 @media print {
+
+  .navbar,
+  button,
   .no-print {
     display: none !important;
   }
+
+  body {
+    background: #fff !important;
+    color: #000;
+  }
+
+  h1,
+  h2,
+  h3,
+  td {
+    color: #000;
+  }
+
+  table {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+  th {
+    background: #eee !important;
+    color: #000 !important;
+  }
+}
+
+/* אפקט חזק במעבר עכבר על כרטיס מנה */
+.card {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s, border-color 0.35s;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.03);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 0 30px rgba(212, 175, 90, 0.35),
+    0 24px 50px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+/* התמונה מתקרבת ומתבהרת */
+.card img,
+.card:not(:has(img))::before {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s;
+  filter: brightness(0.85);
+}
+
+.card:hover img,
+.card:hover:not(:has(img))::before {
+  transform: scale(1.12);
+  filter: brightness(1.05);
+}
+
+/* שם המנה מתחלף לזהב */
+.card h3 {
+  transition: color 0.3s;
+}
+
+.card:hover h3 {
+  color: var(--gold);
+}
+
+/* כפתור ההוספה מודגש */
+.card:hover .card-footer button {
+  background: var(--gold);
+  color: #1a1406;
+  box-shadow: 0 6px 20px rgba(212, 175, 90, 0.45);
+}
+
+/* =========================================================
+   לוגו החברה: סמל עגול + השם "אירוע בטעם"
+   ========================================================= */
+
+/* הסמל: עיגול זהב עם מגש הגשה מכוסה */
+.navbar::before {
+  content: "";
+  order: -2;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  margin: 0 0 0 14px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 90, 0.15), 0 0 24px rgba(212, 175, 90, 0.25);
+  /* איפוס הגדרות הטקסט הישנות */
+  font-size: 0;
+  color: initial;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af5a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 16a8 8 0 0 1 16 0'/%3E%3Cpath d='M2 16h20'/%3E%3Cpath d='M5 19h14'/%3E%3Ccircle cx='12' cy='6.6' r='1.2'/%3E%3Cpath d='M12 7.8V8'/%3E%3Cpath d='M8.5 11.5a4.5 4.5 0 0 1 2-2'/%3E%3C/svg%3E") center / 58% no-repeat,
+    radial-gradient(circle at 30% 30%, #1f2a24, #0b0d0c);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+/* השם: "אירוע בטעם" */
+.navbar::after {
+  content: "אירוע בטעם";
+  order: -1;
+  margin-left: 44px;
+  font-family: "Karantina", var(--font-display);
+  font-weight: 700;
+  font-size: 3.6rem;
+  line-height: 0.9;
+  letter-spacing: 1.5px;
+  background: linear-gradient(180deg, #f6e3a8 0%, var(--gold) 50%, #9c7629 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  /* קו זהב דק מתחת לשם */
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(212, 175, 90, 0.5);
+}
+
+/* תנועה עדינה של הסמל במעבר עכבר על ה-header */
+.navbar:hover::before {
+  transform: rotate(-8deg) scale(1.05);
+  box-shadow: 0 0 0 4px rgba(212, 175, 90, 0.25), 0 0 32px rgba(212, 175, 90, 0.4);
+}
+
+/* טלפון: הלוגו ממורכז מעל הקישורים */
+@media (max-width: 760px) {
+  .navbar::before {
+    width: 48px;
+    height: 48px;
+    margin: 0 0 0 10px;
+  }
+
+  .navbar::after {
+    font-size: 2rem;
+    margin-left: 0;
+  }
+
+  .navbar {
+    row-gap: 10px;
+  }
+}
+
+/* =========================================================
+   רקע בורדו מדורג לכל הדפים
+   ========================================================= */
+:root {
+  --bg: #2a0a10;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top right, rgba(160, 40, 60, 0.45), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(90, 15, 30, 0.6), transparent 60%),
+    linear-gradient(160deg, #4a1220 0%, #2a0a10 50%, #14050a 100%);
+  background-attachment: fixed;
+}
+
+/* כניסה והרשמה: תמונת הרקע עם שכבת בורדו */
+body:has(main > form) {
+  background:
+    linear-gradient(160deg, rgba(74, 18, 32, 0.85), rgba(20, 5, 10, 0.92)),
+    url("/images/auth-bg.jpg") center / cover fixed,
+    #2a0a10;
+}
+
+/* =========================================================
+   Footer - צור קשר
+   ========================================================= */
+
+/* ה-footer תמיד בתחתית הדף, גם כשיש מעט תוכן */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root>main {
+  flex: 1;
+  width: 100%;
+}
+
+.footer {
+  margin-top: 48px;
+  background: rgba(8, 4, 6, 0.85);
+  border-top: 2px solid var(--gold);
+  color: var(--text);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+
+.footer h3 {
+  font-family: "Karantina", var(--font-display);
+  font-size: 2.4rem;
+  color: var(--gold);
+  margin: 0 0 4px;
+}
+
+.footer h4 {
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin: 0 0 14px;
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+.footer p {
+  margin: 0 0 10px;
+  color: var(--muted);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+a.contact-link:hover {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* סמלים לכל אמצעי קשר */
+.contact-link::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: var(--gold);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.icon-phone {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z'/%3E%3C/svg%3E");
+}
+
+.icon-whatsapp {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z'/%3E%3C/svg%3E");
+}
+
+.icon-mail {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='M22 6l-10 7L2 6'/%3E%3C/svg%3E");
+}
+
+.icon-map {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
+
+.icon-clock {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E");
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media print {
+  .footer {
+    display: none;
+  }
+}
+
+/* =========================================================
+   דף אודות ותגובות
+   ========================================================= */
+.about-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-intro {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  font-size: 1.1rem;
+}
+
+.about-intro h1 {
+  color: var(--gold);
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.review p {
+  flex: 1;
+  margin: 10px 0;
+  color: var(--text);
+}
+
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 1.15rem;
+  letter-spacing: 2px;
 }
